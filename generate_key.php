@@ -13,33 +13,32 @@
                 <h3>Discount Offers</h3>
             </div>
             <div class="row">
-            <p> <a href="create_discounts.php" class="btn btn-success">Create</a> </p>
+            <p> <a href="generate_coupon.php" class="btn btn-success">Create</a> </p>
                 <table class="table table-striped table-bordered">
                   <thead>
                     <tr>
                       <th>ID</th>
-                      <th>Title</th>
-                      <th>Description</th>
+                      <th>Type</th>
+                      <th>Code</th>
+                      <th>Message</th>
+                      <th>Validation</th>
+
                     </tr>
                   </thead>
                   <tbody>
                   <?php
                    include 'database.php';
                    $pdo = Database::connect();
-                   $sql = 'SELECT * FROM Discount';
+                   $sql = 'SELECT * FROM Offer';
                    $result = $pdo->query($sql);
                    foreach ($pdo->query($sql) as $row) {
                             echo '<tr>';
-                            echo '<td>'. $row['D_id'] . '</td>';
-                            echo '<td>'. $row['D_title'] . '</td>';
-                            echo '<td>'. $row['D_body'] . '</td>';
-                            echo '<td width=250>';
-                            echo '<a class="btn" href="show_discount.php?id=' . $row['D_id'] . '">Show items</a>';
-                            echo ' ';
-                                echo '<a class="btn btn-success" href="edit_discounts.php?id='.$row['D_id'].'">Update</a>';
-                                echo ' ';
-                                echo '<a class="btn btn-danger" href="delete_discount.php?id='.$row['D_id'].'">Delete</a>';
-                                echo '</td>';
+                            echo '<td>'. $row['O_id'] . '</td>';
+                            echo '<td>'. $row['O_Type'] . '</td>';
+                            echo '<td>'. $row['O_Code'] . '</td>';
+                            echo '<td>'. $row['O_Message'] . '</td>';
+                            echo '<td>'. $row['O_Validation'] . '</td>';
+
                             echo '</tr>';
                    }
                    Database::disconnect();
